@@ -7,7 +7,7 @@
     </div>
     <div class="d-flex justify-content-center" >
       <div class="w-50">
-        <ContinentsList></ContinentsList>
+        <ContinentsIndex></ContinentsIndex>
       </div>
     </div>
   </div>
@@ -16,12 +16,12 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue';
-import ContinentsList from '@/components/Home/ContinentsList.vue';
+import ContinentsIndex from '@/components/Home/continents/ContinentsIndex.vue';
 
 export default {
   name: 'Home',
   components: {
-    ContinentsList,
+    ContinentsIndex,
     // HelloWorld,
   },
 };
