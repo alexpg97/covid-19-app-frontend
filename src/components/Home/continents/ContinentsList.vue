@@ -37,13 +37,16 @@
 import { Component, Vue } from 'vue-property-decorator';
 import covidService from '@/infrastructure/services/covid-service';
 import { Continent } from '@/types/continent';
-import Accordion from 'primevue/accordion';
-import AccordionTab from 'primevue/accordiontab';
+import Accordion from 'primevue/components/accordion/Accordion.vue';
+import AccordionTab from 'primevue/components/accordiontab/AccordionTab.vue';
 import { Country } from '@/types/country';
 
   @Component({
+    components: {
+      Accordion,
+      AccordionTab,
+    },
     name: 'ContinentsList',
-    components: { Accordion, AccordionTab },
   })
 export default class ContinentsList extends Vue {
     continents: Continent[] = [];
@@ -64,32 +67,39 @@ export default class ContinentsList extends Vue {
 </script>
 
 <style scoped>
-  .cases-container{
+  .cases-container {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 40%;
   }
-  .cases-container span{
+
+  .cases-container span {
     display: inline-block;
     width: 20%;
     text-align: right;
   }
+
   .txt-cases-new {
-  color: darkcyan;
+    color: darkcyan;
   }
+
   .txt-cases-active {
     color: darkblue;
   }
+
   .txt-cases-critical {
     color: darkred;
   }
+
   .txt-cases-recovered {
     color: forestgreen;
   }
+
   .txt-deaths-total {
     color: darkslategray;
   }
-  .cursor-pointer{
+
+  .cursor-pointer {
     cursor: pointer;
   }
 </style>
