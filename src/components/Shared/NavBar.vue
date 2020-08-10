@@ -3,17 +3,12 @@
     <nav class="navbar_menu fixed-top">
 
       <a href="" class="logo"> <strong>Covid19 App</strong></a>
-      <ul class="arama">
+      <ul class="arama search-container">
         <li class="input-group">
-          <input type="search" name="ara" class="form-control" placeholder="Búsqueda">
+          <input type="search" name="ara" class="form-control txt-search" placeholder="Search">
           <button class="btn"><span class="material-icons">search</span></button>
         </li>
       </ul>
-    </nav>
-
-    <nav class="navbar_bottom_menu fixed-bottom">
-      <div class="bottom_menu">
-      </div>
     </nav>
   </div>
 </template>
@@ -25,11 +20,14 @@ export default {
 </script>
 
 <style scoped>
+  .search-container{
+    width: 40%;
+  }
   .navbar_menu {
     width: 100%;
     background: black;
     opacity: 0.9;
-    height: 10%;
+    height: 7%;
     padding: 13px 10% 0 2%;
   }
 
@@ -63,6 +61,10 @@ export default {
     position: absolute;
     left: 13%;
     right: 2%;
+  }
+
+  li.input-group{
+    width: 85%;
   }
 
   .input-group span {

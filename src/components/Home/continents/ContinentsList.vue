@@ -9,11 +9,11 @@
               <div class="d-flex justify-content-between">
                 <div>
                   <span class="cursor-pointer"
-                        @click="goToDetailView(country)">{{country.country}}</span>
+                        @click="goToDetailView(country)">{{country.country | capitalize}}</span>
                 </div>
                 <div class="cases-container">
                   <span class="txt-cases-new"
-                        title="New cases">{{country.cases.new}}</span>
+                        title="New cases">{{country.cases.new | numFormat}}</span>
                   <span class="txt-cases-active"
                         title="Active cases">{{country.cases.active}}</span>
                   <span class="txt-cases-critical"
@@ -62,6 +62,12 @@ export default class ContinentsList extends Vue {
 
     goToDetailView = (data: Country) => {
       console.log(data.country);
+    }
+
+    formatPrice = (value: any) => {
+      console.log({ value });
+      const val = (value / 1).toFixed(2).replace('.', ',');
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     }
 }
 </script>

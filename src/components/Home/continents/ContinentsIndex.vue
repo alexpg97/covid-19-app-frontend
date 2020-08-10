@@ -1,19 +1,21 @@
 <template>
   <div>
     <div>
-      <h5>Continents list</h5>
+      <h5>Info per continent</h5>
     </div>
-    <ContinentsList></ContinentsList>
+    <div class="mt-1 mb-1">
+      <ContinentsList2></ContinentsList2>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import ContinentsList from '@/components/Home/continents/ContinentsList.vue';
+import ContinentsList2 from '@/components/Home/continents/ContinentsList2.vue';
 
 export default {
   name: 'ContinentsIndex',
   components: {
-    ContinentsList,
+    ContinentsList2,
   },
 };
 </script>
