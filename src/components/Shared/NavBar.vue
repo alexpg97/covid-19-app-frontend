@@ -2,11 +2,15 @@
   <div>
     <nav class="navbar_menu fixed-top">
 
-      <a href="" class="logo"> <strong>Covid19 App</strong></a>
+      <a href="/" class="logo"> <strong>Covid19 App</strong></a>
       <ul class="arama search-container">
         <li class="input-group">
-          <input type="search" name="ara" class="form-control txt-search" placeholder="Search">
-          <button class="btn"><span class="material-icons">search</span></button>
+          <input type="search" name="ara" class="form-control txt-search"
+                 placeholder="Search by country name"
+                 v-model="myModel.searchText"
+                 @keyup.enter="searchByCountryHandler">
+          <button class="btn" @click="searchByCountryHandler">
+            <span class="material-icons">search</span></button>
         </li>
       </ul>
     </nav>
@@ -14,20 +18,44 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: 'NavBar',
-};
+import { Component, Vue } from 'vue-property-decorator';
+import router from '@/router';
+
+  @Component({
+    components: {},
+    name: 'NavBar',
+  })
+export default class NavBar extends Vue {
+    public myModel = {
+      searchText: '',
+    };
+
+    searchByCountryHandler = () => {
+      router.push({
+        name: 'SearchByCountry',
+        params: { searchText: this.capitalize(this.myModel.searchText) },
+      });
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    capitalize(value: string) {
+      if (!value) return '';
+      const result = value.toString();
+      return result.charAt(0).toUpperCase() + result.slice(1);
+    }
+}
 </script>
 
 <style scoped>
-  .search-container{
+  .search-container {
     width: 40%;
   }
+
   .navbar_menu {
     width: 100%;
     background: black;
     opacity: 0.9;
-    height: 7%;
+    height: 70px;
     padding: 13px 10% 0 2%;
   }
 
@@ -63,7 +91,7 @@ export default {
     right: 2%;
   }
 
-  li.input-group{
+  li.input-group {
     width: 85%;
   }
 

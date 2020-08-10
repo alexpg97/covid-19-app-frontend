@@ -4,11 +4,24 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>-->
-    <div class="m-4">
+    <NavBar></NavBar>
+    <div class="ml-4 mr-4 mb-4 nav-bar-margin">
       <router-view/>
     </div>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import NavBar from '@/components/Shared/NavBar.vue';
+
+export default {
+  name: 'App',
+  components: {
+    NavBar,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -30,5 +43,8 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.nav-bar-margin{
+  margin-top: 6%;
 }
 </style>
