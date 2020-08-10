@@ -1,18 +1,27 @@
 <template>
   <div>
     <nav class="navbar_menu fixed-top">
-
-      <a href="/" class="logo"> <strong>Covid19 App</strong></a>
-      <ul class="arama search-container">
-        <li class="input-group">
-          <input type="search" name="ara" class="form-control txt-search"
-                 placeholder="Search by country name"
-                 v-model="model.searchText"
-                 @keyup.enter="searchByCountryHandler">
-          <button class="btn" @click="searchByCountryHandler">
-            <span class="material-icons">search</span></button>
-        </li>
-      </ul>
+      <div>
+        <div class="d-flex">
+          <a href="/" class="logo"> <strong>Covid19 App</strong></a>
+          <div class="nav-menu">
+            <router-link to="/">Home</router-link> |
+            <router-link to="/continents">Continents</router-link>
+          </div>
+        </div>
+      </div>
+      <div class="arama">
+        <ul class="search-container">
+          <li class="input-group">
+            <input type="search" name="ara" class="form-control txt-search"
+                   placeholder="Search by country name"
+                   v-model="model.searchText"
+                   @keyup.enter="searchByCountryHandler">
+            <button class="btn" @click="searchByCountryHandler">
+              <span class="material-icons">search</span></button>
+          </li>
+        </ul>
+      </div>
     </nav>
   </div>
 </template>
@@ -55,16 +64,55 @@ export default class NavBar extends Vue {
 </script>
 
 <style scoped>
-  .search-container {
-    width: 40%;
-  }
-
   .navbar_menu {
     width: 100%;
     background: black;
     opacity: 0.9;
     height: 70px;
-    padding: 13px 10% 0 2%;
+    padding: 13px 2% 0 2%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-menu a{
+    color: white;
+  }
+
+  .nav-menu a:hover{
+    color: #41b883;
+    text-decoration: none;
+  }
+
+  /*!* Logo Tasarımı *!*/
+  .logo {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    float: left;
+    padding-top: 3px;
+    width: 170px;
+    flex: 1;
+  }
+
+  .logo:hover {
+    text-decoration: none;
+    color: #41b883;
+  }
+
+  .nav-menu{
+    margin-left: 2%;
+    height: 100%;
+    flex: 1;
+  }
+
+  .btn{
+    background: #41b883;
+    margin-left: 3%;
+  }
+
+  /*
+  .search-container {
+    width: 40%;
   }
 
   .navbar_bottom_menu {
@@ -72,22 +120,6 @@ export default class NavBar extends Vue {
     background: gray;
     opacity: 1.0;
     height: 10vh;
-  }
-
-  /* Logo Tasarımı */
-  .logo {
-    color: white;
-    text-decoration: none;
-    font-size: 20px;
-    float: left;
-    padding-top: 3px;
-  }
-
-  .logo:hover {
-    color: white;
-    text-decoration: none;
-    font-size: 24px;
-    font-style: italic;
   }
 
   .arama {
@@ -115,7 +147,7 @@ export default class NavBar extends Vue {
     margin: 0%;
   }
 
-  /* Bottom Menu Left Menu Tasarımı */
+  !* Bottom Menu Left Menu Tasarımı *!
   .left_menu {
     list-style: none;
     float: left;
@@ -163,12 +195,12 @@ export default class NavBar extends Vue {
     text-align: justify;
   }
 
-  /* Bottom_Menu:hover; */
+  !* Bottom_Menu:hover; *!
   .bottom_menu a:hover li {
     border-radius: 45%;
     background: white;
     opacity: 0.8;
     color: black;
     transition: 2s;
-  }
+  }*/
 </style>

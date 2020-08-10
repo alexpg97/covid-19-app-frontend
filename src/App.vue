@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <!--<div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>-->
     <NavBar></NavBar>
     <div class="ml-4 mr-4 mb-4 nav-bar-margin">
       <router-view/>

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
+import NotFound from '../views/NotFound.vue';
 import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
@@ -19,7 +20,7 @@ const routes: Array<RouteConfig> = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
   {
-    path: '/searchByCountry/:searchText',
+    path: '/country/:searchText',
     name: 'SearchByCountry',
     component: () => import(/* webpackChunkName: "about" */ '../views/SearchByCountry.vue'),
   },
@@ -28,6 +29,7 @@ const routes: Array<RouteConfig> = [
     name: 'ContinentDetail',
     component: () => import(/* webpackChunkName: "about" */ '../views/ContinentDetail.vue'),
   },
+  { path: '*', component: NotFound },
 ];
 
 const router = new VueRouter({
