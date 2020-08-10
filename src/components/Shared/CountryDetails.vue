@@ -14,7 +14,8 @@
             <div class="card-body text-left">
               <ul>
                 <li><strong>Continent:</strong>&nbsp;{{country.continent | validateNullText}}</li>
-                <li><strong>Population:</strong>&nbsp;{{country.population | validateNullText}}</li>
+                <li><strong>Population:</strong>&nbsp;{{country.population | validateNullInteger}}
+                </li>
               </ul>
             </div>
           </div>
@@ -26,13 +27,17 @@
             </div>
             <div class="card-body text-left">
               <ul>
-                <li><strong>New:</strong>&nbsp;{{country.cases.new | formatInteger}}</li>
-                <li><strong>Active:</strong>&nbsp;{{country.cases.active | formatInteger}}</li>
-                <li><strong>Critical:</strong>&nbsp;{{country.cases.critical | formatInteger}}</li>
-                <li><strong>Recovered:</strong>&nbsp;{{country.cases.recovered | formatInteger}}
+                <li><strong>New:</strong>&nbsp;{{country.cases.new | validateNullInteger}}</li>
+                <li><strong>Active:</strong>&nbsp;{{country.cases.active | validateNullInteger}}
                 </li>
-                <li><strong>Critical:</strong>&nbsp;{{country.deaths.total | formatInteger}}</li>
-                <li><strong>TOTAL:</strong>&nbsp;{{country.cases.total | formatInteger}}</li>
+                <li><strong>Critical:</strong>&nbsp;{{country.cases.critical | validateNullInteger}}
+                </li>
+                <li><strong>Recovered:</strong>&nbsp;{{country.cases.recovered |
+                  validateNullInteger}}
+                </li>
+                <li><strong>Critical:</strong>&nbsp;{{country.deaths.total | validateNullInteger}}
+                </li>
+                <li><strong>TOTAL:</strong>&nbsp;{{country.cases.total | validateNullInteger}}</li>
               </ul>
 
               <span>Tests</span>
@@ -74,10 +79,6 @@ import { Country } from '@/types/country';
       validateNullText(data: string) {
         return data || 'N/A';
       },
-      formatInteger(value: number) {
-        const val = (value / 1).toFixed(0).replace(',', '.');
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-      },
       validateNullInteger(value: number) {
         if (!value) {
           return 'N/A';
@@ -88,7 +89,7 @@ import { Country } from '@/types/country';
     },
   })
 export default class CountryDetails extends Vue {
-    @Prop()
+    @Prop({ default: null })
     country: Country | null = null;
 }
 </script>

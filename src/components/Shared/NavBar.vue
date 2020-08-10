@@ -7,7 +7,7 @@
         <li class="input-group">
           <input type="search" name="ara" class="form-control txt-search"
                  placeholder="Search by country name"
-                 v-model="myModel.searchText"
+                 v-model="model.searchText"
                  @keyup.enter="searchByCountryHandler">
           <button class="btn" @click="searchByCountryHandler">
             <span class="material-icons">search</span></button>
@@ -26,14 +26,22 @@ import router from '@/router';
     name: 'NavBar',
   })
 export default class NavBar extends Vue {
-    public myModel = {
+    public model = {
       searchText: '',
     };
+
+    mounted() {
+      this.setSearchTextFromRoute();
+    }
+
+    setSearchTextFromRoute() {
+      this.model.searchText = router.currentRoute.params.searchText;
+    }
 
     searchByCountryHandler = () => {
       router.push({
         name: 'SearchByCountry',
-        params: { searchText: this.capitalize(this.myModel.searchText) },
+        params: { searchText: this.capitalize(this.model.searchText) },
       });
     }
 

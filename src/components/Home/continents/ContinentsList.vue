@@ -63,12 +63,6 @@ export default class ContinentsList extends Vue {
     goToDetailView = (data: Country) => {
       console.log(data.country);
     }
-
-    formatPrice = (value) => {
-      console.log({ value });
-      const val = (value / 1).toFixed(2).replace('.', ',');
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
 }
 </script>
 

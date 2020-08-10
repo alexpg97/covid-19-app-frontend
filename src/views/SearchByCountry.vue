@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <template v-if="!message && country">
-      <CountryDetails :country="country"></CountryDetails>
+    <template v-if="!hasError">
+      <CountryDetails :country="countryParam"></CountryDetails>
     </template>
     <template v-else>
       <span>Message: {{message}}</span>
@@ -26,7 +26,13 @@ import router from '../router';
 export default class SearchByCountry extends Vue {
     country: Country| null = null;
 
+    hasError = false;
+
     message: string | null = null;
+
+    get countryParam() {
+      return this.country;
+    }
 
     mounted() {
       this.searchData();
@@ -39,8 +45,10 @@ export default class SearchByCountry extends Vue {
         .then((response) => {
           this.message = null;
           this.country = response.data;
+          this.hasError = false;
         }).catch((error) => {
-          this.country = null;
+          this.hasError = true;
+          // this.country = null;
           this.message = error.response.data.message;
         });
     }

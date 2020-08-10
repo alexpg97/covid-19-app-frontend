@@ -2,7 +2,7 @@
   <div class="row">
     <template v-for="continent in continents">
       <div class="card" :key="continent.continent">
-        <div class="card-header">
+        <div class="card-header cursor-pointer" @click="goToDetailView(continent)">
           <span><strong>{{continent.continent || 'N/A'}}</strong></span>
         </div>
         <div class="card-body">
@@ -53,12 +53,13 @@ import { Component, Vue } from 'vue-property-decorator';
 import covidService from '@/infrastructure/services/covid-service';
 import Accordion from 'primevue/components/accordion/Accordion.vue';
 import AccordionTab from 'primevue/components/accordiontab/AccordionTab.vue';
-import { Country } from '@/types/country';
 import { ContinentItem } from '@/types/continent-item';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faGrimace, faGrin, faBookmark, faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { Continent } from '@/types/continent';
+import router from '@/router';
 
 library.add(faGrimace, faGrin, faBookmark, faUser);
 
@@ -69,11 +70,11 @@ library.add(faGrimace, faGrin, faBookmark, faUser);
     },
     name: 'ContinentsList2',
     filters: {
-      formatDouble(value) {
+      formatDouble(value: number) {
         const val = (value / 1).toFixed(2).replace(',', '.');
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       },
-      formatInteger(value) {
+      formatInteger(value: number) {
         const val = (value / 1).toFixed(0).replace(',', '.');
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       },
@@ -91,8 +92,11 @@ export default class ContinentsList2 extends Vue {
       this.continents = response.data;
     }
 
-    goToDetailView = (data: Country) => {
-      console.log(data.country);
+    goToDetailView = (data: Continent) => {
+      router.push({
+        name: 'ContinentDetail',
+        params: { continentName: data.continent },
+      });
     }
 }
 </script>

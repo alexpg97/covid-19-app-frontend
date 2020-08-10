@@ -10,8 +10,12 @@ const getInfo = () => httpClient.get<Continent[]>(`${BASE_URL}`);
 
 const getContinents = () => httpClient.get<ContinentItem[]>(`${BASE_URL}/getContinents`);
 
+const getContinentData = (continentName: string) => httpClient.get<Continent>(`${BASE_URL}/perContinent/${continentName}`);
+
 const searchByCountryName = (countryName: string) => httpClient.get<Country>(`${BASE_URL}/perCountry/${countryName}`);
 
-const covidService = { getInfo, getContinents, searchByCountryName };
+const covidService = {
+  getInfo, getContinents, searchByCountryName, getContinentData,
+};
 
 export default covidService;

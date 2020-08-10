@@ -23,6 +23,11 @@ const routes: Array<RouteConfig> = [
     name: 'SearchByCountry',
     component: () => import(/* webpackChunkName: "about" */ '../views/SearchByCountry.vue'),
   },
+  {
+    path: '/byContinent/:continentName',
+    name: 'ContinentDetail',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContinentDetail.vue'),
+  },
 ];
 
 const router = new VueRouter({
