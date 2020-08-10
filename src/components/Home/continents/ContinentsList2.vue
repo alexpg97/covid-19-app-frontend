@@ -69,11 +69,11 @@ library.add(faGrimace, faGrin, faBookmark, faUser);
     },
     name: 'ContinentsList2',
     filters: {
-      formatDouble(value: any) {
+      formatDouble(value) {
         const val = (value / 1).toFixed(2).replace(',', '.');
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       },
-      formatInteger(value: any) {
+      formatInteger(value) {
         const val = (value / 1).toFixed(0).replace(',', '.');
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       },

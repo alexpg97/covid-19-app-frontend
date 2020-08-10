@@ -64,7 +64,7 @@ export default class ContinentsList extends Vue {
       console.log(data.country);
     }
 
-    formatPrice = (value: any) => {
+    formatPrice = (value) => {
       console.log({ value });
       const val = (value / 1).toFixed(2).replace('.', ',');
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');

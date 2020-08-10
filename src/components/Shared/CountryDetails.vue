@@ -71,14 +71,14 @@ import { Country } from '@/types/country';
     name: 'CountryDetails.vue',
     components: {},
     filters: {
-      validateNullText(data: any) {
+      validateNullText(data: string) {
         return data || 'N/A';
       },
-      formatInteger(value: any) {
+      formatInteger(value: number) {
         const val = (value / 1).toFixed(0).replace(',', '.');
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       },
-      validateNullInteger(value: any) {
+      validateNullInteger(value: number) {
         if (!value) {
           return 'N/A';
         }
