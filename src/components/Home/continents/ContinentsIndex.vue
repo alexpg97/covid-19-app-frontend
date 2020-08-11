@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h5>Info per continent</h5>
+      <h5>Info per continents</h5>
     </div>
     <div class="mt-1 mb-1">
       <ContinentsList2></ContinentsList2>

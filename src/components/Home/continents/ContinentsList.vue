@@ -13,15 +13,15 @@
                 </div>
                 <div class="cases-container">
                   <span class="txt-cases-new"
-                        title="New cases">{{country.cases.new | numFormat}}</span>
+                        title="New cases">{{country.cases.new | validateNullInteger}}</span>
                   <span class="txt-cases-active"
-                        title="Active cases">{{country.cases.active}}</span>
-                  <span class="txt-cases-critical"
-                        title="Critical cases">{{country.cases.critical}}</span>
+                        title="Active cases">{{country.cases.active | validateNullInteger}}</span>
+                  <span class="txt-cases-critical" title="Critical cases">
+                    {{country.cases.critical | validateNullInteger}}</span>
                   <span class="txt-cases-recovered"
-                        title="Recovered">{{country.cases.recovered}}</span>
+                        title="Recovered">{{country.cases.recovered | validateNullInteger}}</span>
                   <span class="txt-deaths-total"
-                        title="Total deaths">{{country.deaths.total}}</span>
+                        title="Total deaths">{{country.deaths.total | validateNullInteger}}</span>
                 </div>
               </div>
             </li>
@@ -40,6 +40,7 @@ import { Continent } from '@/types/continent';
 import Accordion from 'primevue/components/accordion/Accordion.vue';
 import AccordionTab from 'primevue/components/accordiontab/AccordionTab.vue';
 import { Country } from '@/types/country';
+import router from '@/router';
 
   @Component({
     components: {
@@ -47,6 +48,15 @@ import { Country } from '@/types/country';
       AccordionTab,
     },
     name: 'ContinentsList',
+    filters: {
+      validateNullInteger(value: number) {
+        if (!value) {
+          return 'N/A';
+        }
+        const val = (value / 1).toFixed(0).replace(',', '.');
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      },
+    },
   })
 export default class ContinentsList extends Vue {
     continents: Continent[] = [];
@@ -61,7 +71,10 @@ export default class ContinentsList extends Vue {
     }
 
     goToDetailView = (data: Country) => {
-      console.log(data.country);
+      router.push({
+        name: 'SearchByCountry',
+        params: { searchText: data.country },
+      });
     }
 }
 </script>

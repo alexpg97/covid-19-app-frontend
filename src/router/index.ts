@@ -29,6 +29,11 @@ const routes: Array<RouteConfig> = [
     name: 'ContinentDetail',
     component: () => import(/* webpackChunkName: "about" */ '../views/ContinentDetail.vue'),
   },
+  {
+    path: '/continents',
+    name: 'ContinentsInfo',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContinentsInfo.vue'),
+  },
   { path: '*', component: NotFound },
 ];
 

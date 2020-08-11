@@ -5,7 +5,8 @@
         <div class="d-flex">
           <a href="/" class="logo"> <strong>Covid19 App</strong></a>
           <div class="nav-menu">
-            <router-link to="/">Home</router-link> |
+            <router-link to="/">Home</router-link>
+            |
             <router-link to="/continents">Continents</router-link>
           </div>
         </div>
@@ -74,13 +75,18 @@ export default class NavBar extends Vue {
     justify-content: space-between;
   }
 
-  .nav-menu a{
+  .nav-menu a {
     color: white;
   }
 
-  .nav-menu a:hover{
+  .nav-menu a:hover {
     color: #41b883;
     text-decoration: none;
+  }
+
+  .nav-menu .router-link-exact-active {
+    color: #41b883;
+    font-weight: bold;
   }
 
   /*!* Logo Tasarımı *!*/
@@ -99,13 +105,13 @@ export default class NavBar extends Vue {
     color: #41b883;
   }
 
-  .nav-menu{
+  .nav-menu {
     margin-left: 2%;
     height: 100%;
     flex: 1;
   }
 
-  .btn{
+  .btn {
     background: #41b883;
     margin-left: 3%;
   }

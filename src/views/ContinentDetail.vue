@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContinentDetailList :continent="continent"></ContinentDetailList>
+    <ContinentDetailList :continents="[continent]"></ContinentDetailList>
   </div>
 </template>
 
@@ -11,30 +11,35 @@ import { Continent } from '@/types/continent';
 import covidService from '@/infrastructure/services/covid-service';
 import router from '@/router';
 
-@Component({
-  components: {
-    ContinentDetailList,
-  },
-  name: 'ContinentDetail',
-})
+  @Component({
+    components: {
+      ContinentDetailList,
+    },
+    name: 'ContinentDetail',
+  })
 export default class ContinentDetail extends Vue {
-  continentName = '';
+    continentName = '';
 
-  continent: Continent|null = null;
+    continent: Continent | null = null;
 
-  mounted() {
-    this.setDataFromRoute();
-    this.fetchData();
-  }
+    mounted() {
+      this.setDataFromRoute();
+      this.fetchData();
+    }
 
-  setDataFromRoute() {
-    this.continentName = router.currentRoute.params.continentName;
-  }
+    setDataFromRoute() {
+      this.continentName = router.currentRoute.params.continentName;
+    }
 
-  async fetchData() {
-    const response = await covidService.getContinentData(this.continentName);
-    this.continent = response.data;
-  }
+    async fetchData() {
+      covidService.getContinentData(this.continentName)
+        .then((response) => {
+          this.continent = response.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
 }
 </script>
 
