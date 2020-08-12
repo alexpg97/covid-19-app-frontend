@@ -21,6 +21,7 @@ npm run serve
 ```
 
 ### Compiles and minifies for production
+You might have some issues when building the app, please run `npm run lint` to fix it.
 ```
 npm run build
 ```
